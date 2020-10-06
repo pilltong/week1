@@ -1,0 +1,12 @@
+if [ $# -lt 1 ]
+then 
+	echo 'Usage: phone searchfor [...searchfor]'
+	echo "(You didn't tell me what you want to search for.)"
+else 
+	str=()
+	for r in $@ 
+	do	
+		str="$str$r|"
+	done
+	egrep "(${str::-1})" mydata | awk -f display.awk
+fi
